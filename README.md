@@ -2,6 +2,8 @@
 
 ![fetch mcp logo](logo.jpg)
 
+*This fork adds possiblity to send JSON requests with defined method (by default it always sends GET request) and body (for non-GET requests)*
+
 This MCP server provides functionality to fetch web content in various formats, including HTML, JSON, plain text, and Markdown.
 
 ## Components
