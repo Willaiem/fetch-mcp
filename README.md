@@ -20,6 +20,8 @@ This MCP server provides functionality to fetch web content in various formats, 
   - Input:
     - `url` (string, required): URL of the JSON to fetch
     - `headers` (object, optional): Custom headers to include in the request
+    - `method` (string, optional): HTTP method to use for the request
+    - `body` (object, optional): Optional body to include in the request. It is transformed to string under the hood.
   - Returns the parsed JSON content
 
 - **fetch_txt**
