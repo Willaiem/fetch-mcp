@@ -19,7 +19,7 @@ const server = new Server(
       resources: {},
       tools: {},
     },
-  },
+  }
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -93,6 +93,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             headers: {
               type: "object",
               description: "Optional headers to include in the request",
+            },
+            method: {
+              type: "string",
+              description: "HTTP method to use for the request",
+            },
+            body: {
+              type: "object",
+              description: "Optional body to include in the request",
             },
           },
           required: ["url"],
