@@ -2,7 +2,7 @@
 
 ![fetch mcp logo](logo.jpg)
 
-*This fork adds possiblity to send JSON requests with defined method (by default it always sends GET request) and body (for non-GET requests). This is something that was missing in original version and I find this useful for improved feedback loop during backend development*
+*This fork adds possiblity to send JSON requests with defined method (by default it always sends GET request) and body (for non-GET requests). Also it is outputting raw HTTP response when it throws an error, so LLM has more context and can perform better. This is something that was missing in original version and I find this useful for improved feedback loop during backend development*
 
 This MCP server provides functionality to fetch web content in various formats, including HTML, JSON, plain text, and Markdown.
 
