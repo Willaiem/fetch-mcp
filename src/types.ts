@@ -7,8 +7,8 @@ export const RequestPayloadSchema = z.object({
   body: z
     .object({})
     .passthrough()
-    .optional()
-    .transform((body) => JSON.stringify(body)),
+    .transform((body) => JSON.stringify(body))
+    .optional(),
 });
 
 export type RequestPayload = z.infer<typeof RequestPayloadSchema>;
