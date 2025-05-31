@@ -111,7 +111,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
+  const { arguments: args } = request.params;
 
   const validatedArgs = RequestPayloadSchema.parse(args);
 
