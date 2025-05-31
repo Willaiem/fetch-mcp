@@ -19,7 +19,7 @@ const server = new Server(
       resources: {},
       tools: {},
     },
-  },
+  }
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -94,6 +94,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: "object",
               description: "Optional headers to include in the request",
             },
+            method: {
+              type: "string",
+              description: "HTTP method to use for the request",
+            },
+            body: {
+              type: "object",
+              description:
+                "Optional body to include in the request. It is automatically stringified to JSON.",
+            },
           },
           required: ["url"],
         },
@@ -103,7 +112,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
+  const { arguments: args } = request.params;
 
   const validatedArgs = RequestPayloadSchema.parse(args);
 

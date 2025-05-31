@@ -6,6 +6,7 @@ export class Fetcher {
   private static async _fetch({
     url,
     headers,
+    ...fetchOptionsArgs
   }: RequestPayload): Promise<Response> {
     try {
       const response = await fetch(url, {
@@ -14,10 +15,24 @@ export class Fetcher {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
           ...headers,
         },
+        ...fetchOptionsArgs,
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
+        const rawErrorResponse = JSON.stringify({
+          status: response.status,
+          statusText: response.statusText,
+          url: response.url,
+          headers: Object.fromEntries(response.headers.entries()),
+          body: await response.text(),
+          bodyUsed: response.bodyUsed,
+          redirected: response.redirected,
+          type: response.type,
+        });
+
+        throw new Error(
+          `HTTP error: ${response.status}; Raw response: ${rawErrorResponse}`
+        );
       }
       return response;
     } catch (e: unknown) {
@@ -46,6 +61,7 @@ export class Fetcher {
     try {
       const response = await this._fetch(requestPayload);
       const json = await response.json();
+
       return {
         content: [{ type: "text", text: JSON.stringify(json) }],
         isError: false,
