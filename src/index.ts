@@ -100,7 +100,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
             body: {
               type: "object",
-              description: "Optional body to include in the request",
+              description:
+                "Optional body to include in the request. It is automatically stringified to JSON.",
             },
           },
           required: ["url"],
